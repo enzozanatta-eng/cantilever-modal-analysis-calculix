@@ -1,0 +1,38 @@
+Steel cantilever beam 200 x 20 x 10 mm | mesh (40, 4, 4) | 640 C3D8I elements | mass 0.3140 kg
+
+Mode Type                n   FEA [Hz]  Theory [Hz]     Diff  Meff X  Meff Y  Meff Z
+   1 Vertical bending    1      209.8        208.9   +0.46%    0.0%    0.0%   61.6%
+   2 Lateral bending     1      416.6        417.8   -0.29%    0.0%   61.6%    0.0%
+   3 Vertical bending    2     1301.5       1309.0   -0.58%    0.0%    0.0%   19.0%
+   4 Lateral bending     2     2502.8       2618.0   -4.40%    0.0%   19.4%    0.0%
+   5 Torsion             1     3080.1       2971.7   +3.65%    0.0%    0.0%    0.0%
+   6 Vertical bending    3     3588.0       3665.3   -2.11%    0.0%    0.0%    6.6%
+   7 Axial               1     6482.5       6465.2   +0.27%   81.4%    0.0%    0.0%
+   8 Lateral bending     3     6604.1       7330.6   -9.91%    0.0%    6.8%    0.0%
+   9 Vertical bending    4     6881.5       7182.5   -4.19%    0.0%    0.0%    3.4%
+  10 Torsion             2     9247.7       8915.2   +3.73%    0.0%    0.0%    0.0%
+     Cumulative effective mass                       81.4%   87.8%   90.6%
+
+Mode shape check (vertical bending vs Euler-Bernoulli):
+  Bending mode 1: MAC = 1.00000
+  Bending mode 2: MAC = 0.99999
+  Bending mode 3: MAC = 0.99995
+
+Mesh convergence (first four modes):
+     10 elements:   210.71    418.27   1324.93   2539.83  Hz
+     80 elements:   210.39    417.83   1309.49   2521.46  Hz
+    640 elements:   209.83    416.56   1301.48   2502.83  Hz
+   5120 elements:   209.55    416.01   1298.55   2496.30  Hz
+  Change medium -> fine: -0.134%  -0.134%  -0.225%  -0.261%
+
+Design study: motor at 1800 rpm -> excitation at 30 Hz (1x) and 60 Hz (2x)
+  Rule: the first vertical and lateral bending frequencies must stay at least 20% away from an excitation
+  L = 200 mm: f1 =   209.8 Hz (theory   208.9), f2 =   416.6 Hz  ->  OK
+  L = 250 mm: f1 =   134.2 Hz (theory   133.7), f2 =   267.1 Hz  ->  OK
+  L = 300 mm: f1 =    93.2 Hz (theory    92.8), f2 =   185.6 Hz  ->  OK
+  L = 350 mm: f1 =    68.4 Hz (theory    68.2), f2 =   136.4 Hz  ->  RESONANCE RISK
+  L = 400 mm: f1 =    52.4 Hz (theory    52.2), f2 =   104.5 Hz  ->  RESONANCE RISK
+  L = 450 mm: f1 =    41.4 Hz (theory    41.3), f2 =    82.6 Hz  ->  OK
+  L = 500 mm: f1 =    33.5 Hz (theory    33.4), f2 =    66.9 Hz  ->  RESONANCE RISK
+  L = 550 mm: f1 =    27.7 Hz (theory    27.6), f2 =    55.3 Hz  ->  RESONANCE RISK
+  L = 600 mm: f1 =    23.3 Hz (theory    23.2), f2 =    46.5 Hz  ->  OK
